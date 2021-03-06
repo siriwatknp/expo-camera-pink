@@ -12,6 +12,33 @@ import {
 
 let camera;
 
+const Button = ({ children, ...props }) => {
+  return (
+    <TouchableOpacity
+      {...props}
+      style={{
+        backgroundColor: "rgba(0,0,0,0.6)",
+        borderRadius: 8,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        minWidth: 120,
+        ...props.style,
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 20,
+          textAlign: "center",
+          color: "#fff",
+          fontWeight: "bold",
+        }}
+      >
+        {children}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
 const CameraPreview = ({ photo, savePhoto, retakePicture }) => {
   return (
     <View
@@ -39,48 +66,8 @@ const CameraPreview = ({ photo, savePhoto, retakePicture }) => {
           justifyContent: "space-between",
         }}
       >
-        <TouchableOpacity
-          onPress={retakePicture}
-          style={{
-            backgroundColor: "rgba(0,0,0,0.6)",
-            borderRadius: 8,
-            paddingHorizontal: 16,
-            paddingVertical: 12,
-            minWidth: 120,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              textAlign: "center",
-              color: "#fff",
-              fontWeight: "bold",
-            }}
-          >
-            Retake
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={savePhoto}
-          style={{
-            backgroundColor: "rgba(0,0,0,0.6)",
-            borderRadius: 8,
-            paddingHorizontal: 16,
-            paddingVertical: 12,
-            minWidth: 120,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              textAlign: "center",
-              color: "#fff",
-              fontWeight: "bold",
-            }}
-          >
-            Save Photo
-          </Text>
-        </TouchableOpacity>
+        <Button onPress={retakePicture}>Retake</Button>
+        <Button onPress={savePhoto}>Save Photo</Button>
       </View>
     </View>
   );
